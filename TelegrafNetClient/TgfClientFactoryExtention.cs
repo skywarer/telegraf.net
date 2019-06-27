@@ -8,7 +8,6 @@ namespace TelegrafNet.Client
     {
         public static IServiceCollection AddTgfClient(this IServiceCollection services, string address)
         {
-            services.AddSingleton<ITgfClientProvider>(new TgfClientProvider(address));
             services.AddTransient(sp =>
             {
                 var p = sp.GetService<ITgfClientProvider>();
@@ -21,37 +20,12 @@ namespace TelegrafNet.Client
                     return null;
                 }
             });
-            services.AddScoped(sp =>
-            {
-                var p = sp.GetService<ITgfClientProvider>();
-                if (p != null)
-                {
-                    return p.CreateMetricSender();
-                }
-                else {
-                    return null;
-                }
-            });
-
             return services;
         }
 
         public static IServiceCollection AddTgfClient(this IServiceCollection services, string address, string[] tagKeysDef, string[] tagValuesDef)
         {
-            services.AddSingleton<ITgfClientProvider>(new TgfClientProvider(address, tagKeysDef, tagValuesDef));
             services.AddTransient(sp =>
-            {
-                var p = sp.GetService<ITgfClientProvider>();
-                if (p != null)
-                {
-                    return p.CreateMetricSender();
-                }
-                else
-                {
-                    return null;
-                }
-            });
-            services.AddScoped(sp =>
             {
                 var p = sp.GetService<ITgfClientProvider>();
                 if (p != null)
