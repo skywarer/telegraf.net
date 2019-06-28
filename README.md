@@ -13,8 +13,8 @@ Dependency Injection:
 {
   "Telegraf": {
     "address": "unixgram:///tmp/telegraf.sock",
-    "tag_keys": [ "appname", "apphost" ], // Список тегов по-умолчанию
-    "tag_values": [ "myapp", "myhost" ] // Список значений тегов по-умолчанию
+    "tag_keys": [ "appname", "apphost" ], // default tags one to one
+    "tag_values": [ "myapp", "myhost" ] 
   }
 }
 ```
@@ -61,7 +61,7 @@ Simple telegraf settings
 [[inputs.socket_listener]]
         service_address = "unixgram:///tmp/telegraf.sock"
         data_format = "json"
-        json_name_key = "name" # обязательный параметр
+        json_name_key = "name" # requre
         tag_keys = ["appname"]
 ```  
 aggregation:  
