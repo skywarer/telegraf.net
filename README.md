@@ -61,8 +61,8 @@ Simple telegraf settings
 [[inputs.socket_listener]]
         service_address = "unixgram:///tmp/telegraf.sock"
         data_format = "json"
-        json_name_key = "name" # requre
-        tag_keys = ["appname"]
+        json_name_key = "mymeasure" # requre
+        tag_keys = ["appname", "apphost"]
 ```  
 aggregation:  
 ```toml
